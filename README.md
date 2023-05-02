@@ -3,10 +3,6 @@
 
 FoodHelper is a Web Application which aims to fight food poverty by providing a platform for charities and organizations To share what they can provide to you. From warm-cooked meals to packaged food and drink, there are plenty of options to choose from. If you are struggling to find something to eat, contact your local council as they proivde many useful services
 
-## Try it now : ⬇️
-### http://nasaapi.ma1492.brighton.domains/Index.html
-
-
 ## Acknowledgements 
 _________________
 1. Postcodes API: [Postcodes.io](https://postcodes.io/).
