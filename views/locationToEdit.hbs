@@ -1,0 +1,120 @@
+<div class="container-flex">
+  {{#if locationDataByName}}
+  <div class="container-flex p-3">
+    <h2 class="px-3">Location name: {{locationDataByName.locationName}}</h2>
+    <h5 class="px-3 py-3">Postcode: {{ locationDataByName.postcode}}</h5>
+    <h5 class="px-3 py-3">Contact Number: {{locationDataByName.number}}</h5>
+    <h5 class="px-3 py-3">What I can find: {{locationDataByName.served}}</h5>
+    <h5 class="px-3 py-3">Type: {{locationDataByName.type}}</h5>
+    <h5 class="px-3 py-3">Website: <a href="{{{locationDataByName.websiteURL}}}">{{locationDataByName.locationName}} <i
+          class="bi bi-box-arrow-up-right"></i></a></h5>
+    <h5 class="px-3 py-3">
+      <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true">{{locationDataByName.likes.length}}</i>
+      <i class="bi bi-hand-thumbs-down-fill" aria-hidden="true">{{locationDataByName.dislikes.length}}</i>
+    </h5>
+
+    <div class="container-flex p-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editLocationInfo">
+        Edit Location information
+      </button>
+
+    </div>
+    <div class="modal fade" id="editLocationInfo" tabindex="-1" role="dialog" aria-labelledby="editLocationInfo"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editLocationInfoLabel">Edit Location information for {{locationName}}:</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container">
+              <form method="POST" action="/editLocation{{locationDataByName._id}}" id="form">
+                <div class="form-group p-3">
+                  <label for="locationName">Location name:</label>
+                  <input type="text" placeholder="Location name" id="locationName" name="locationName"
+                    class="form-control">
+                </div>
+                <div class="form-group p-3">
+                  <label for="locationType">Location type:</label>
+                  <select class="form-control" id="locationType" name="locationType">
+                    <option>Pub / Cafe / Restaurant</option>
+                    <option>Food bank</option>
+                    <option>Community centre</option>
+                    <option>Take-away / fast-food</option>
+                    <option>Place of worship</option>
+                    <option>"Food Van"</option>
+                    <option>Public event</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group p-3">
+                  <label for="radio">What can I find?: </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Cooked Meal"
+                      onclick="onlyOne(this)" checked>
+                    <label class="form-check-label" for="CookedMeal">Cooked Meal</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Take-away"
+                      onclick="onlyOne(this)" checked>
+                    <label class="form-check-label" for="Take=away">Take-away</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Packaged food"
+                      onclick="onlyOne(this)">
+                    <label class="form-check-label" for="Packaged food">Packaged food</label>
+                  </div>
+                  <div class="form-check disabled">
+                    <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Other"
+                      onclick="onlyOne(this)">
+                    <label class="form-check-label" for="Other">Other</label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <input type="text" placeholder="lat" id="lat" name="lat" class="form-control">
+                </div>
+                <div class="form-group">
+                  <input type="text" placeholder="lon" id="lon" name="lon" class="form-control">
+                </div>
+
+                <div class="form-group p-3">
+                  <label for="Number">Contact Number: </label>
+                  <input type="number" placeholder="Enter Number" id="number" name="number" class="form-control">
+                </div>
+
+                <div class="form-group p-3">
+                  <label for="Website">Website: </label>
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroup-sizing-sm">http(s)://</span>
+                    </div>
+                    <input type="text" placeholder="Enter Website (www.websi....)" id="websiteURL" name="websiteURL"
+                      class="form-control">
+                  </div>
+
+                </div>
+
+            </div>
+
+          </div>
+        </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary mb-1" id="submitBtn" value="Update">Update information</button>
+            <form action="/deleteLocation/{{locationDataByName._id}}" method="POST">
+              <button type="submit" class="btn btn-primary mb-1" id="DeleteBtn">Delete Location</button>
+            </form>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{/if}}
+<script src="geoLocation.js"></script>

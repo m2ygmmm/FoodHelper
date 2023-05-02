@@ -1,0 +1,35 @@
+<div class="container-flex">
+  {{#each locationDataByLat}}
+  <div class="container-flex p-3">
+    <h2 class="px-3">Location name: {{locationName}}</h2>
+    <h5 class="px-3 py-3">Postcode: {{ postcode}}</h5>
+    <h5 class="px-3 py-3">Contact Number: {{number}}</h5>
+    <h5 class="px-3 py-3">What I can find: {{served}}</h5>
+    <h5 class="px-3 py-3">Type: {{type}}</h5>
+    <h5 class="px-3 py-3">Website: <a href="{{{websiteURL}}}">{{locationName}} <i
+          class="bi bi-box-arrow-up-right"></i></a></h5>
+    <p class="px-3 py-3 border border-solid">{{descriptionBox}}</p>
+    <h5 class="px-3 py-3">
+      <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true">{{likes.length}}</i>
+      <i class="bi bi-hand-thumbs-down-fill" aria-hidden="true">{{dislikes.length}}</i>
+    </h5>
+    <p>In order to change the postcode, the location must first be deleted</p>
+    <form method="POST" action="/addcomment/{{_id}}" id="form">
+      <div class="form-group p-3">
+        <h5 class="px-3 py-3">Add a comment:</h5>
+        <textarea class="form-control" id="commentInput" name="commentInput" rows="3"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary mb-1" id="uploadComment" value="Upload">Upload</button>
+    </form>
+    <h5 class="px-3 py-3">Comments:</h5>
+    {{#each commentsList}}
+    <div class="container-flex p-3 border border-solid my-3">
+      <h5 class="fw-bold text-primary mb-1">{{this.CommentText}}</h5>
+      <p class="text-muted small mb-0">
+        {{formatDate this.DateOfComment  'MMMM Do YYYY, h:mm:ss a'}}
+      </p>
+    </div>
+    {{/each}}
+  </div>
+  {{/each}}
+</div>

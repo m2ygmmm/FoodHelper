@@ -1,0 +1,184 @@
+<div class="container-fluid">
+  <div class="container-fluid rounded border border-2 p-3">
+    <h1>Dashboard</h1>
+    <h2 class="p-3">Welcome back {{ userData.fname}}</h2>
+    <p class="p-3 ml-4">Member since: {{formatDate userData.date 'MMMM Do YYYY, h:mm:ss a'}}</p>
+    <table class="table table-borderless">
+      <tbody>
+        <tr>
+          <th>
+            <h4>Email address:</h4>
+          </th>
+          <td>{{userData.username}}</td>
+
+        </tr>
+        <tr>
+          <th>
+            <h4>Name:</h4>
+          </th>
+          <td>{{userData.fname}} {{userData.lname}}</td>
+
+        </tr>
+        <tr>
+          <th>
+            <h4>Organization Name:</h4>
+          </th>
+          <td>{{userData.organizationName}}</td>
+
+        </tr>
+        <tr>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editUserModal">
+            Edit account information
+          </button>
+        </tr>
+      </tbody>
+    </table>
+    {{#if errors}}
+    <div class="alert alert-warning" id="infoUpdateAlert" role="alert">
+      {{errors}}
+    </div>
+    {{/if}}
+    <div class="container-fluid">
+      <div class="row">
+        <h3>My Uploaded Locations:</h3>
+      </div>
+
+    </div>
+    <div class="row p-3">
+      {{#each locationData}}
+      <div class="card p-3 rounded border border-2 mb-3">
+        <div class="card-content center-align p-3">
+          <button type="button" class="btn btn-primary" onclick="location.href='/editLocation{{_id}}'">View / Modify </button>
+        </div>
+
+        <h5 class="px-3">{{locationName}}</h5>
+        <p class="px-3">{{allCaps postcode}}</p>
+        <p class="px-3">{{number}}</p>
+        <p class="px-3">{{served}}</p>
+        <p class="px-3">{{type}}</p>
+        {{#if websiteURL}}
+        <p class="px-3"><a href="{{{websiteURL}}}">{{locationName}} <i class="bi bi-box-arrow-up-right"></i></a></p>
+        {{else}}
+        <p class="px-3">Website not avaliable</p>
+        {{/if}}
+        <p class="px-3">
+          <i class="bi bi-hand-thumbs-up-fill" aria-hidden="true">{{likes.length}}</i>
+          <i class="bi bi-hand-thumbs-down-fill" aria-hidden="true">{{dislikes.length}}</i>
+        </p>
+      </div>
+      {{else}}
+      <p>No Locations</p>
+      {{/each}}
+    </div>
+
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModal"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editUserModalLabel">Edit Account information</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form name="regFormEdit" class="px-md-2" action="/dashboard" method="POST">
+              <div class="alert alert-danger" id="errorAlert" role="alert">
+                {{#if errors}}
+                {{errors}}
+                {{/if}}
+              </div>
+
+              <div class="form-outline mb-4">
+                <input type="text" id="fname" name="fname" class="form-control" />
+                <label class="form-check-label" for="fname">First Name</label>
+              </div>
+              <div class="form-outline mb-4">
+                <input type="text" id="lname" name="lname" class="form-control" />
+                <label class="form-check-label" for="lname">Last name</label>
+              </div>
+              <div class="form-outline mb-4">
+                <input type="text" id="organizationName" name="organizationName" class="form-control" />
+                <label class="form-check-label" for="organizationName">Organization Name:</label>
+              </div>
+
+              <div class="alert alert-danger" id="nameAlert" role="alert"></div>
+
+              <div class="form-outline mb-4">
+                <input type="email" id="email" name="username" class="form-control" />
+                <label class="email" for="username">Email</label>
+              </div>
+
+              <div class="row">
+                <div class="col-md-6 mb-2">
+                  <div class="form-outline">
+                    <input type="password" class="form-control" name="password" id="password" />
+                    <label for="password" class="form-label">Password</label>
+                    <button onclick="viewPassword()" type="button" class="btn btn-default px-3">
+                      <i class="bi bi-eye-slash" id="eyeButton" aria-hidden="true">
+                      </i></button>
+                  </div>
+
+                </div>
+                <div class="col-md-6 mb-4">
+                  <div class="form-outline">
+                    <input type="password" class="form-control" name="passwordCheck" id="passwordCheck" />
+                    <label for="passwordCheck" class="form-label">Re-enter password</label>
+                  </div>
+
+                </div>
+                <div class="alert alert-danger" id="passwordAlert" role="alert"></div>
+                <div class="alert alert-danger" id="emailAlert" role="alert"></div>
+                <small id="passwordHelpBlock" class="form-text text-muted mb-3">
+                  Your password must be 6-20 characters long, and must not contain spaces, special characters, or any emojis.
+                </small>
+              </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary mb-1" id="submitBtn" value="Delete">Update information</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteUserModal">
+    Delete account
+  </button>
+
+  <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteUserModalLabel">Delete account</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete your account? This action is irreversible! </p>
+          <p>Any locations created will also be removed</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <form action='/delete/{{userData.id}}' method="delete">
+            <button type="submit" class="btn btn-primary mb-1" id="DeleteBtn" value="Delete">Delete account</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <a href="/logout">
+    <button type="submit" class="btn btn-primary mb-1" id="logoutBtn" value="Logout">Logout</button>
+  </a>
+
+</div>
+
+</div>
+<script src="regValidation.js"></script>

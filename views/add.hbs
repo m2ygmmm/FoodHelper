@@ -1,0 +1,95 @@
+<div class="container">
+  <form method="POST" action="/added" id="form">
+    <div class="form-group p-3">
+      <label for="locationName">Location name:</label>
+      <input type="text" placeholder="Location name" id="locationName" required name="locationName"
+        class="form-control">
+    </div>
+    <div class="form-group p-3">
+      <label for="locationType">Location type:</label>
+      <select class="form-control" id="locationType" name="locationType">
+        <option>Pub / Cafe / Restaurant</option>
+        <option>Food bank</option>
+        <option>Community centre</option>
+        <option>Take-away / fast-food</option>
+        <option>Place of worship</option>
+        <option>"Food Van"</option>
+        <option>Public event</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <div class="form-group p-3">
+      <label for="radio">What can I find?: </label>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Cooked Meal" onclick="onlyOne(this)"
+          checked>
+        <label class="form-check-label" for="CookedMeal">Cooked Meal</label>
+      </div>
+       <div class="form-check">
+        <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Take-away" onclick="onlyOne(this)"
+          checked>
+        <label class="form-check-label" for="Take=away">Take-away</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Packaged food" onclick="onlyOne(this)">
+        <label class="form-check-label" for="Packaged food">Packaged food</label>
+      </div>
+      <div class="form-check disabled">
+        <input class="form-check-input" type="radio" name="check" id="servedRadio" value="Other" onclick="onlyOne(this)">
+        <label class="form-check-label" for="Other">Other</label>
+      </div>
+    </div>
+
+    <div class="form-group p-3">
+      <label for="postcode">Postcode:</label>
+      <div class="alert alert-danger" id="postcodeAlert" role="alert">Postcode Invalid</div>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Enter postcode" id="postcode" required name="postcode">
+        <div class="input-group-append">
+          <button type="button" onclick="getLocation()" class="btn btn-primary mb-1">
+            <i class="bi bi-geo-alt"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group p-3">
+      <label for="Number">Contact Number: </label>
+      <input type="number" placeholder="Enter Number" id="Number" name="Number" required class="form-control">
+    </div>
+
+    <div class="form-group p-3">
+      <label for="Website">Website URL: </label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-sm">http(s)://</span>
+        </div>
+        <input type="text" placeholder="Enter Website (www.websi....)" id="websiteURL" name="websiteURL"
+          class="form-control">
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <input type="text" placeholder="lat" id="lat" name="lat" required class="form-control">
+    </div>
+    <div class="form-group">
+      <input type="text" placeholder="lon" id="lon" name="lon" required class="form-control">
+    </div>
+
+    <div class="form-group p-3">
+      <label for="descriptionBox">Add a brief Descripion: </label>
+      <textarea class="form-control" id="descriptionBox" name="descriptionBox" rows="3"></textarea>
+    </div>
+
+    <div class="form-group p-3">
+      <button type="submit" class="btn btn-primary" data-toggle="modal" id="submitBtn" data-target="#exampleModal">
+        Submit
+      </button>
+    </div>
+
+  </form>
+
+
+  <script src="geoLocation.js"></script>
+</div>

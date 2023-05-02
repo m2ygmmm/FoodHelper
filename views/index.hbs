@@ -1,0 +1,50 @@
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+<div class="home">
+  <div class="jumbotron">
+    <h1 class="display-4">Helping to feed our local communities!</h1>
+    <p class="lead">Many charites and organisastions are proivindg access to free food and drink to those who need it!
+      Search below
+      using the map </p>
+    <hr class="my-4">
+
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col p-3">
+      <button class="btn btn-primary" id="fly">Search by Postcode</button>
+      <button class="btn btn-primary" id="currentLocation"> <i class="bi bi-geo-alt"></i></button>
+    </div>
+    <div class="col-lg-9 p-3">
+      <input type="text" class="form-control" placeholder="Enter postcode:" id="postcode" required name="postcode">
+      <div class="alert alert-danger" id="postcodeAlert" role="alert">Postcode Invalid</div>
+    </div>
+  </div>
+  <hr class="my-4">
+  <div class="row">
+    <div class="col">
+      <div id="map" style="width: 100%; height: 500px; border-radius: 5px"></div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <h3 class="mt-3">About</h3>
+    <p class="mx-3">FoodHelper is a Web Application which aims to fight food poverty by providing a platform for
+      charities and organizations
+      To share what they can provide to you. From warm-cooked meals to packaged food and drink, there are plenty of
+      options to choose from.
+      If you are struggling to find something to eat, contact your local council as they proivde many useful services
+    </p>
+    <p>
+      Maps are provided by <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> open API
+    </p>
+    <p>Using the <a href="https://postcodes.io/">Postcodes.io</a> API</p>
+    <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a
+      href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a
+        href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>
+  </div>
+
+</div>
+
+
+<script src="map.js"></script>

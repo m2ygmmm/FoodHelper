@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    background-color: wheat;
+
+}
+.app{
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.home{
+    width: 100%;
+    padding: 50px 30px;
+    max-width: 400px;
+    background-color: beige;
+    border-radius: 16px;
+    text-align: center;
+}

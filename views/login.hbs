@@ -1,0 +1,44 @@
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-lg-8 col-xl-6">
+      <div class="card rounded-3">
+        <img
+          src="https://images.pexels.com/photos/315938/pexels-photo-315938.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+          class=" w-100" style="border-top-left-radius: .3rem; border-top-right-radius: .3rem; height: 200px;"
+          alt="Login" />
+        <div class="card-body p-4 p-md-5">
+          <h3 class="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Login</h3>
+
+          <form name="loginForm" class="px-md-2" action="/login" method="POST">
+            <div class="alert alert-danger" id="errorAlertLogin" role="alert">
+              {{#if errors}}
+              {{errors}}
+              {{/if}}
+            </div>
+
+            <div class="form-outline mb-4">
+              <input type="email" id="username" name="username" class="form-control" required />
+              <label class="username" for="username">Email</label>
+            </div>
+            <div class="form-outline mb-4">
+              <input type="password" id="password" name="password" class="form-control" required />
+              <label class="password" for="password">Password</label>
+              <button onclick="viewPassword()" type="button" class="btn btn-primary px-3">
+                <i class="bi bi-eye-slash" id="eyeButton" aria-hidden="true">
+                </i></button>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary mb-1" id="submitBtn" value="Login">Login</button>
+
+            <a href="/register" class="text-decoration-none">
+              <h3 class="pt-3">New user? Register now</h3>
+            </a>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="loginValidation.js"></script>
