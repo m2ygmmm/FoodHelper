@@ -40,6 +40,10 @@ function onlyOne(checkbox) {
   checkboxes.forEach((item) => {
     if (item !== checkbox) item.checked = false
   })
+  var checkboxes2 = document.getElementsByName('check2')
+  checkboxes2.forEach((item) => {
+    if (item !== checkbox) item.checked = false
+  })
 }
 
 postcodeInput.onkeyup = function () {

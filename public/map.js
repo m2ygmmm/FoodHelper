@@ -43,13 +43,16 @@ function showPosition(position) {
         console.log(location)
         const lat = location.location.coordinates[0];
         const lon = location.location.coordinates[1];
-        const marker = new mapboxgl.Marker({
-          color: '#6e8c68',
-          draggable: false,
-        })
-          .setLngLat([lon, lat])
-          .setPopup(new mapboxgl.Popup().setHTML('<div class="card"><div class="card-body"><h5 class="card-title">' + location.locationName + '</h5><h6 class="card-subtitle mb-2 text-muted">' + location.postcode + '</h6><ul class="list-group list-group-flush"><li class="list-group-item">Type: ' + location.type + '</li><li class="list-group-item">Contact Number: ' + location.number + '</li><li class="list-group-item">Mainly serves: ' + location.served + '</li>  <li class="list-group-item"><button type="button" onclick="onRate(' + location.codeNum + ',' + 1 + ')" class="btn btn-default px-3" id="likeBtn"><i class="bi bi-hand-thumbs-up" id="likeButton" aria-hidden="true">' + location.likes.length + '</i></button><button type="button" class="btn btn-default px-3" onclick="onRate(' + location.codeNum + ',' + 0 + ')" ><i class="bi bi-hand-thumbs-down" id="dislikeButton" aria-hidden="true">' + location.dislikes.length + '</i></button></li><li class="list-group-item"><a href="/location/' + location._id + '" class="btn btn-primary btn-sm">More</a></li></ul></div></div>'))
-          .addTo(map);
+        if(location.postcode != ""){
+          const marker = new mapboxgl.Marker({
+            color: '#6e8c68',
+            draggable: false,
+          })
+            .setLngLat([lon, lat])
+            .setPopup(new mapboxgl.Popup().setHTML('<div class="card"><div class="card-body"><h5 class="card-title">' + location.locationName + '</h5><h6 class="card-subtitle mb-2 text-muted">' + location.postcode + '</h6><ul class="list-group list-group-flush"><li class="list-group-item">Type: ' + location.type + '</li><li class="list-group-item">Contact Number: ' + location.number + '</li><li class="list-group-item">Mainly serves: ' + location.served + '</li>  <li class="list-group-item"><button type="button" onclick="onRate(' + location.codeNum + ',' + 1 + ')" class="btn btn-primary px-3" id="likeBtn"><i class="bi bi-hand-thumbs-up" id="likeButton" aria-hidden="true">' + location.likes.length + '</i></button><button type="button" class="btn btn-primary px-3" onclick="onRate(' + location.codeNum + ',' + 0 + ')" ><i class="bi bi-hand-thumbs-down" id="dislikeButton" aria-hidden="true">' + location.dislikes.length + '</i></button></li><li class="list-group-item"><a href="/location/' + location._id + '" class="btn btn-primary btn-sm">More</a></li></ul></div></div>'))
+            .addTo(map);
+        }
+        
       });
 
     })

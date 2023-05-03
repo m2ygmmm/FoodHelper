@@ -2,7 +2,7 @@
   {{#each locationDataByLat}}
   <div class="container-flex p-3">
     <h2 class="px-3">Location name: {{locationName}}</h2>
-    <h5 class="px-3 py-3">Postcode: {{ postcode}}</h5>
+    <h5 class="px-3 py-3">Postcode: {{ifPostcode postcode}}</h5>
     <h5 class="px-3 py-3">Contact Number: {{number}}</h5>
     <h5 class="px-3 py-3">What I can find: {{served}}</h5>
     <h5 class="px-3 py-3">Type: {{type}}</h5>
@@ -17,7 +17,7 @@
     <form method="POST" action="/addcomment/{{_id}}" id="form">
       <div class="form-group p-3">
         <h5 class="px-3 py-3">Add a comment:</h5>
-        <textarea class="form-control" id="commentInput" name="commentInput" rows="3"></textarea>
+        <textarea class="form-control" id="commentInput" name="commentInput" rows="3" required></textarea>
       </div>
       <button type="submit" class="btn btn-primary mb-1" id="uploadComment" value="Upload">Upload</button>
     </form>

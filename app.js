@@ -42,7 +42,16 @@ handlebars.registerHelper('formatDate', function(date, format){
 handlebars.registerHelper('allCaps', function(str) {
     return str.toUpperCase()
 })
-//Two registered helpers that are used in the views 
+handlebars.registerHelper('ifPostcode', function(postcode, options) {
+    if(postcode != "") {
+      return postcode
+    }
+    else{
+        return('Please contact first');
+    }
+    
+  });
+//Three registered helpers that are used in the views 
 
 app.use(session({
     secret: 'igkBm1LjwE', //fix this
@@ -158,7 +167,8 @@ function isLoggedOut( req, res, next) {
 //used to authenticate users
 
 app.get('/', async (req, res) => {
-    res.render("index", { title: "Home" })
+    const locationsDB = await locations.find();
+    res.render("index", { title: "Home" , locationsDB: locationsDB})
 });
 //GET '/' method / route which renders the home page 
 
